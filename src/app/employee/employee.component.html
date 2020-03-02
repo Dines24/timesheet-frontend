@@ -1,0 +1,175 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg">
+
+		<div class="navbar-wrapper">
+			<div class="navbar-toggle">
+				<button type="button" class="navbar-toggler">
+					<span class="navbar-toggler-bar bar1"></span>
+					<span class="navbar-toggler-bar bar2"></span>
+					<span class="navbar-toggler-bar bar3"></span>
+				</button>
+			</div>
+
+
+
+		</div>
+	</nav>
+
+	<!-- nav end -->
+
+	<!-- pop up start -->
+
+	<div class="modal" id="login-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					  <h4 class="modal-title">Add Department</h4>
+					<button type="button" id="close" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+
+					<form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
+						<div class="form-group des">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<label Class="lbl">First Name:</label>										
+										<input type="text" name="fname" formControlName="fname" id="fname" [ngClass]="{ 'is-invalid': submitted && validate.fname.errors }" class="form-control input-sm" placeholder="First Name">
+										<div *ngIf="submitted && validate.fname.status == 'INVALID'" class="invalid-feedback">
+											<div >First name is required</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<label Class="lbl">Last Name:</label>
+										<input type="text" name="last_name" formControlName="lname" id="last_name" [ngClass]="{ 'is-invalid': submitted && validate.lname.errors }" class="form-control input-sm" placeholder="Last Name">
+										<div *ngIf="submitted && validate.lname.status == 'INVALID'" class="invalid-feedback">
+											<div >Last name is required</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<label Class="lbl">Department:</label>
+										<select name="department" [ngClass]="{ 'is-invalid': submitted && validate.department.errors }" formControlName="department" id="department" class="form-control">
+											<option class="hidden"  selected disabled>Select Department</option>
+											<option *ngFor="let department of departments; let i = index" [value]="departments[i].id">
+											{{departments[i].name}}</option>
+										</select>
+										<div *ngIf="submitted && validate.department.status == 'INVALID'" class="invalid-feedback">
+											<div >Department is required</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+
+										<label Class="lbl">Designation:</label>
+										<select name="designation" [ngClass]="{ 'is-invalid': submitted && validate.designation.errors }" formControlName="designation" id="designation" class="form-control">
+											<option class="hidden"  selected disabled>Web Designer</option>
+											<option *ngFor="let designation of designations; let i = index" [value]="designations[i].id">
+												{{designations[i].name}}</option>
+										</select>
+										<div *ngIf="submitted && validate.designation.status == 'INVALID'" class="invalid-feedback">
+											<div >Designation is required</div>
+										</div>
+									</div>
+								</div>
+							</div>			
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<label Class="lbl">Email Id:</label>
+										<input type="text" name="email" [ngClass]="{ 'is-invalid': submitted && validate.email.errors }" formControlName="email" id="email" class="form-control input-sm" placeholder="Enter Email">
+										<div *ngIf="submitted && validate.email.status == 'INVALID'" class="invalid-feedback">
+											<div >Email is required</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<label Class="lbl">Mobile No:</label>
+										<input type="text" name="txtphone" formControlName="txtphone" class="form-control input-sm" placeholder="Enter Contact Number">
+									</div>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<label Class="lbl">Password:</label>
+										<input type="password" [ngClass]="{ 'is-invalid': submitted && validate.password.errors }" formControlName="password" name="password" id="password" class="form-control input-sm" placeholder="Enter password">
+										<div *ngIf="submitted && validate.password.status == 'INVALID'" class="invalid-feedback">
+											<div >Password is required</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class=" desi text-center">
+							<input *ngIf = "formtype == 'add'"  type="submit" class="btn btn-primary"  value="ADD NOW"/>
+				<input *ngIf = "formtype == 'update'"  type="submit" class="btn btn-primary"  value="UPDATE NOW"/>
+			</div>
+
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- pop up end -->
+
+	<!-- End Navbar -->
+	<div class="content">
+		<a class="navbar-brand dip" href="./dashboard.html">Dashboard <i class="fa fa-chevron-right"></i><span class="dept">Employee-List</span></a>
+		<button type="button" id="openModel" class="btn btn-primary rttt" data-toggle="modal" data-target="#login-modal">Add Employee</button>
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="card card-stats">
+
+				
+							<div class="bg-primary text-white p-title">
+								<h4 class="mb-0">Add New Employee
+					</h4>
+							</div>
+							<div class="table-responsive user-data">
+								<table class="table mb-0">
+									<thead>
+										<tr>
+											<th class="cnr text-center">Employee ID</th>
+											<th  class="cnr">Employee Name</th>
+											<th  class="cnr">Mobile.No</th>
+											<th  class="cnr">Email Id</th>
+											<th class="cnr text-center">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let employee of employees; ">
+												<td class="name text-center">{{employee.id}}</td>
+												<td class="name">{{employee.fname}}  {{employee.lname}}</td>
+												<td class="name">{{employee.phone_no}}</td>
+												<td class="name">{{employee.email}}</td>
+												<td class="text-center action">
+													<a (click) = "editEmployee(employee.id)"><img src="/assets/Edit.png"></a>
+													<a (click) = "deleteEmployee(employee.id)"><img src="/assets/delete.png"></a>
+												</td>
+											</tr>                           
+										</tbody>
+									</table>
+								</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

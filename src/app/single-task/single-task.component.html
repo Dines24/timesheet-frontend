@@ -1,0 +1,221 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+  
+      <div class="navbar-wrapper">
+        <div class="navbar-toggle">
+          <button type="button" class="navbar-toggler">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+        </div>
+  
+  
+  
+      </div>
+    </nav>
+  
+  
+  
+    <!-- End Navbar -->
+    <div class="content">
+      <a class="navbar-brand dip" href="./dashboard.html">Dashboard</a>
+  
+        <i class="fa fa-chevron-right"></i>
+        <a href="Task-view1.html"><span class="dept">Task</span></a>
+  
+  
+        <button *ngIf="tasks.status != 'completed'" (click) = "completeTask(tasks.id)" type="button" class="btn btn-default" >Task Complete</button>
+        <button *ngIf="tasks.status == 'completed'" type="button"  class="btn btn-default projectcomplete" >Task Completed</button>  
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats">
+  
+              <div class="row">
+                <div class="col-md-12">
+  
+                  <div class="bg-primary text-white p-title">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h4 class="mb-0"><a href="#">Task View  <i class="fa fa-check-circle"></i></a></h4>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+  
+                     
+                  <div class="col-md-12 frm">
+                    <div class="col-md-12 fmm">
+  
+                      <div class="col-md-12 ">
+                        <div class="row">
+                          <div class="col-md-4 fmmm">
+  
+                            <p>Project name : {{ tasks.project.project_name }}</p>
+                            <p>Priority : {{ tasks.priority }}</p>
+  
+  
+  
+                          </div>
+  
+                          <div class="col-md-4 fm1">
+  
+                            <p>Task named: {{ tasks.task_name }}</p>
+                            <p>Task Start Date : {{ tasks.start_date }}</p>
+  
+  
+  
+                          </div>
+                          <div class="col-md-4 fm1">
+  
+                            <p>Task Time: {{ tasks.duration }}</p>
+                            <p>Task End Date : 20,2020</p>
+  
+                          </div>
+  
+  
+  
+                        </div>
+                      </div>
+  
+                    </div>  
+  
+  
+  
+                    <div class="col-md-12 fmm">
+                      <h4>Project Description</h4>
+                      <p>{{ tasks.project.project_description }}</p>
+  
+  
+                   
+  
+  
+  
+                  </div>
+  
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <!-- main start -->
+        <div class="content">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="card card-stats">
+  
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="bg-primary text-white p-title">
+                      <h4 class="mb-0">Task Complete</h4>
+                    </div>
+                    <div class="table-responsive user-data">
+                      <table class="table mb-0">
+                        <thead>
+                          <tr>
+                            <th class="cnr">S.No</th>
+                            <th  class="cnr">Task named</th>
+                            <th  class="cnr">Task Description</th>
+  
+                            <th  class="cnr">Department</th>
+  
+                            <th class="cnr">named</th>
+                            <th class="cnr">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="ttt">
+                            <td class="named">1</td>
+                            <td class="named">Design Create Task</td>
+                            <td class="named">Lorem Ipsum is simply dummy text of the printing .<a href="#"> Read More</a></td>
+                            <td class="named">Designing</td>
+                            <td class="named">Shikha Rani</td>
+  
+  
+                            <td class="text-main action">
+                              <a href="#"><img src="images/Edit.png"></a>
+                              <a href="#"><img src="images/Eye.png"></a>
+                              <a href="#"><img src="images/delete.png"></a>
+  
+  
+                            </td>
+  
+                          </tr>                           
+                          <tr>
+                            <td class="named">2</td>
+                            <td class="named">cypress24</td>
+                            <td class="named">Lorem Ipsum is simply dummy text of the printing .<a href="#"> Read More</a></td>
+                            <td class="named">Designing</td>
+                            <td class="named">Shikha Rani</td>
+                            <td class="text-main action">
+                              <a href="#"><img src="images/Edit.png"></a>
+                              <a href="#"><img src="images/Eye.png"></a>
+                              <a href="#"><img src="images/delete.png"></a>
+  
+  
+                            </td>
+  
+                          </tr>
+  
+  
+  
+                          <tr>
+                            <td class="named">3</td>
+                            <td class="named">Requirement</td>
+  
+                            <td class="named">Lorem Ipsum is simply dummy text of the printing .<a href="#"> Read More</a></td>
+                            <td class="named">Designing</td>
+                            <td class="named">Shikha Rani</td>
+                            <td class="text-main action">
+                              <a href="#"><img src="images/Edit.png"></a>
+                              <a href="#"><img src="images/Eye.png"></a>
+                              <a href="#"><img src="images/delete.png"></a>
+  
+  
+                            </td>							
+                          </tr>
+  
+                          <tr>
+                            <td class="named">4</td>
+                            <td class="named">Steel Alerts</td>
+                            <td class="named">Lorem Ipsum is simply dummy text of the printing .<a href="#"> Read More</a></td>
+                            <td class="named">Designing</td>
+                            <td class="named">Shikha Rani</td>
+                            <td class="text-main action">
+                              <a href="#"><img src="images/Edit.png"></a>
+                              <a href="#"><img src="images/Eye.png"></a>
+                              <a href="#"><img src="images/delete.png"></a>
+  
+  
+  
+                            </td>
+                          </tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

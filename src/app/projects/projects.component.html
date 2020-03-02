@@ -1,0 +1,78 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg">
+
+		<div class="navbar-wrapper">
+			<div class="navbar-toggle">
+				<button type="button" class="navbar-toggler">
+					<span class="navbar-toggler-bar bar1"></span>
+					<span class="navbar-toggler-bar bar2"></span>
+					<span class="navbar-toggler-bar bar3"></span>
+				</button>
+			</div>
+
+
+
+		</div>
+	</nav>
+
+	<!-- main start -->
+<div class="content">
+<a class="navbar-brand dip" href="./dashboard.html">Dashboard <i class="fa fa-chevron-right"></i><span class="dept">Projects</span></a>
+<button type="button" class="btn btn-primary rttt"><a  [routerLink]="['/', 'add-project']">Add Project</a></button>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<div class="card card-stats">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive user-data">
+						<table class="table mb-0">
+							<thead>
+								<tr>
+									<th class="namess cnr">S.No</th>
+									<th  class="cnr">Project Name</th>
+									<th  class="cnr">Description</th>
+									<th  class="cnr">Deadline</th>
+									<th  class="cnr">Assign</th>
+									<th  class="cnr">Attachment</th>
+									<th class="cnr text-center">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="ttt frms" *ngFor="let project of projects; let i=index;">
+									<td class="namess text-center">{{ i+1 }}</td>
+									<td class="name">{{ project.project_name }}<br><span class="clr">{{ project?.user?.fname }} {{ project?.user?.lname }}</span></td>
+									<td class="name">{{ project.project_description }}</td>
+									<td class="name">{{ project.deadline }}</td>
+									<td class="text-center action">
+										<button id="target" (click) = "toggle(project.id)"  class="button button4 target">  Assigned
+										</button>
+										<div class='_content blah' *ngIf="project.show==1">
+											<h6 *ngFor="let projectusers of project.projectuser;">{{ projectusers.fname }} {{ projectusers.lname }}
+												<br><span class="bbtm"></span><span class="chk"><label class="container">
+													<input type="checkbox" (change)="assignProject(projectusers.id, project.id, projectusers.status?'1':'0')" [(ngModel)]="projectusers.status">
+													<span class="checkmark"></span>
+												</label></span>
+											</h6>
+										</div>
+									</td>
+									<td class="name">
+										<i class="fa fa-paperclip" *ngIf="project.document">{{ project.document}}</i>
+											<i class="fa fa-paperclip" *ngIf="!project.document">N/A</i>
+									</td>
+									<td class="design-right text-center">
+										<a (click) = "deleteProject(project.id)"><img src="assets/delete.png"></a>
+										<a [routerLink]="['/', 'single-project', project.id]"><img src="/assets/eye.png"></a>
+									</td>
+								</tr>	
+							</tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

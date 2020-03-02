@@ -1,0 +1,100 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+
+
+
+    </div>
+  </nav>
+
+
+  <!-- nav end -->
+
+
+  <!-- End Navbar -->
+  <div class="content">
+    <a class="navbar-brand dip" href="#pablo">Dashboard <i class="fa fa-chevron-right"></i><span
+        class="dept">Permission</span></a>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card card-stats">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="bg-primary text-white p-title">
+                <h4 class="mb-0">Permission</h4>
+              </div>
+              <div class="table-responsive user-data">
+                <div class="row">
+                  <div class="col-md-12">
+                    <nav>
+                      <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a [class.active]="selectedDepartment == department.id" class="nav-item nav-link active"
+                          *ngFor="let department of departments;" (click)="selectDepartment(department.id)"
+                          data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+                          aria-selected="true">{{department.name}}</a>
+                        <!-- <a class="nav-item nav-link" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Web Development</a>
+                        <a class="nav-item nav-link" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Digital Marketing</a>
+                        <a class="nav-item nav-link" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Mobile Development</a> -->
+
+                      </div>
+                    </nav>
+                    <div class="tab-content" >
+                      <div class="tab-pane fade  active in" id="nav-home" role="tabpanel"
+                        aria-labelledby="nav-home-tab">
+                        <table class="table" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th class="cnr text-center">Sr.No</th>
+                              <th class="cnr text-center">Employee Name</th>
+                              <th class="cnr text-center">Designation</th>
+                              <th class="cnr text-center">Status</th>
+                              <th class="cnr text-center">Add Project</th>
+                              <th class="cnr text-center">Create Task</th>
+                              <th class="cnr text-center">Delete</th>
+                              <th class="cnr text-center">View</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let user of users;let i =index;">
+                              <td class="text-center">{{i+1}}</td>
+                              <td class="text-center">{{ user.fname }}  {{ user.lname }}</td>
+                              <td class="text-center">{{ user.designation.name }}</td>
+                              <td class="text-center"> <label class="custom-control custom-checkbox">
+                                <input type="checkbox"  (change)="updatePermission(user.id, 'status', user.status?'1':'0')" [(ngModel)]="user.status" class="custom-control-input">
+                                  <span class="custom-control-indicator"></span>
+                                </label>
+                              </td>
+                              <td class="text-center"><input type="checkbox" name="addproject" (change)="updatePermission(user.id, 'addproject', user.user_permissions.addproject?'1':'0')" [(ngModel)]="user.user_permissions.addproject" >
+                              </td>
+
+                              <td class="text-center"><input type="checkbox" name="createtask" (change)="updatePermission(user.id, 'createtask', user.user_permissions.createtask?'1':'0')" [(ngModel)]="user.user_permissions.createtask"  >
+                              </td>
+
+                              <td class="text-center"><input type="checkbox" name="view" (change)="updatePermission(user.id, 'view', user.user_permissions.view?'1':'0')" [(ngModel)]="user.user_permissions.view" >
+                              </td>
+
+                              <td class="text-center"><input type="checkbox" name="delete" (change)="updatePermission(user.id, 'delete', user.user_permissions.delete?'1':'0')" [(ngModel)]="user.user_permissions.delete" >
+                              </td>
+
+                            </tr>
+                            <tr *ngIf="users == ''">
+                              <td>NO record found</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                           

@@ -1,0 +1,257 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+
+      
+
+    </div>
+  </nav>
+
+  <!-- End Navbar -->
+  <!-- <div class="panel-header panel-header-lg">
+
+<canvas id="bigDashboardChart"></canvas>
+
+
+</div> -->
+<div class="content">
+<a class="navbar-brand deep" href="./dashboard.html">Dashboard</a>
+
+<div class="row inner-row">
+
+<div class="col-lg-4 col-md-4 col-sm-4">
+  <div class="card card-stats">
+    <div class="card-body ">
+
+      <div class="analytics-sparkle-line reso-mg-b-30">
+        <div class="analytics-content">
+          <h5>Ongoing Projects</h5>
+          <h2>{{projectsstatus?.ongoing?.ongoing}}/{{projectsstatus?.ongoing?.total}}<span class="tuition-fees"><img src="/assets/rocket.png"></span></h2>
+          <span class="text-danger">{{projectsstatus?.ongoing?.ongoing}} project Pending</span>
+          <div class="progress m-b-0">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:20%;"> <span class="sr-only">20% Complete</span> </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+  <div class="card card-stats">
+    <div class="card-body ">
+
+      <div class="analytics-sparkle-line reso-mg-b-30">
+        <div class="analytics-content">
+          <h5>Pending Projects</h5>
+          <h2>{{projectsstatus?.pending?.pending}}/<span class="counter">{{projectsstatus?.pending?.total}}</span> <span class="tuition-fees"><img src="/assets/rocket.png"></span></h2>
+          <span class="text-success">{{projectsstatus?.ongoing?.ongoing}} project Ongoing</span>
+          <div class="progress m-b-0">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%;"> <span class="sr-only">20% Complete</span> </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+  <div class="card card-stats">
+    <div class="card-body ">
+
+      <div class="analytics-sparkle-line reso-mg-b-30">
+        <div class="analytics-content">
+          <h5>Complete Projects</h5>
+          <h2>{{projectsstatus?.completed?.completed}}/<span class="counter">{{projectsstatus?.completed?.total}}</span> <span class="tuition-fees"><img src="/assets/rocket.png"></span></h2>
+          <span class="text-warning">{{projectsstatus?.pending?.pending}} project Pending/{{projectsstatus?.ongoing?.ongoing}} Project Ongoing</span>
+          <div class="progress m-b-0">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">20% Complete</span> </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+<!-- row end -->
+
+
+<!-- row start -->
+
+<div class="row inner-row">
+<div class="col-lg-8 col-sm-12">
+ <div class="card card-chart">
+   <div class="col-sm-12 b2">
+    <div class="row">
+     <div class="col-lg-3 col-sm-3 b31">
+      <p>Project Report</p>
+    </div>
+
+    <div class="col-lg-3 col-sm-3"></div>
+    <div class="col-lg-6 col-sm-6 b31">
+      <div id="imaginary_container"> 
+       <div class="input-group stylish-input-group">
+        <input type="text" class="form-control"  placeholder="Search" >
+        <span class="input-group-addon">
+         <button type="submit">
+           <i class="fa fa-search"></i>                   
+         </button>  
+       </span>
+     </div>
+   </div>
+
+ </div>
+</div>
+</div>
+
+
+<div class="row">
+
+<div class="col-lg-4 col-sm-4 b3">
+
+  <div *ngFor="let project of projects; let i=index" [routerLinkActive]="['active']" class="cdd">
+    <a (click) = "projectDescription(project.id)"> {{i+1}}  {{ project.project_name }}</a>
+  </div>
+
+
+</div>
+
+<div class="col-lg-8 col-sm-8">
+<div class="tab-content">
+ <div role="tabpanel" class="" id="vtab2">
+   <h3>{{ projectdescription.project_name }}</h3>
+   <p>{{ projectdescription.project_description }}</p>
+ </div>
+
+</div>
+</div>
+</div>					
+   </div>
+ </div>
+
+
+
+
+
+
+ <div class="col-lg-4 col-sm-12">
+  <div class="card card-chart">
+   <div id="tracking-pre"></div>
+   <div id="tracking">
+    <div class="text-center tracking-status-intransit">
+     <p> Notification <span class="noti"><a href="#">View All</a></span></p>
+   </div>
+   <div class="tracking-list">
+     <div class="tracking-item">
+      <div class="tracking-icon status-intransit">
+        <img src="assets/1.png">
+        <!-- <i class="fas fa-circle"></i> -->
+      </div>
+      <div class="tracking-Time">2:30pm
+      </div>
+      <div class="tracking-content">Posted New Project<br><span class="amt">Amit Kumar</span></div>
+    </div>
+    <div class="tracking-item">
+      <div class="tracking-icon status-intransit">
+       <img src="assets/1.png">
+       <!-- <i class="fas fa-circle"></i> -->
+     </div>
+     <div class="tracking-Time">2:30pm
+     </div>
+     <div class="tracking-content">Pending 2 Projects<br><span class="amt">Recruiter App</span>
+     </div>
+   </div>
+   <div class="tracking-item">
+    <div class="tracking-icon status-intransit">
+     <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+      <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+    </svg>
+    <!-- <i class="fas fa-circle"></i> -->
+  </div>
+  <div class="tracking-Time">5:30pm
+  </div>
+  <div class="tracking-content">You Have 3 Task Done<br><span class="amt">Recruiter App</span>
+  </div>
+
+
+
+</div>
+<div class="tracking-item">
+  <div class="tracking-icon status-intransit">
+    <img src="assets/1.png">
+    <!-- <i class="fas fa-circle"></i> -->
+  </div>
+  <div class="tracking-Time">9:10pm
+  </div>
+  <div class="tracking-content">Posted New Project<br><span class="amt">Amit Kumar</span></div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- tabs start -->
+
+<section id="tabs" class="project-tab">
+
+<div class="card card-chart">
+<div class="row">
+<div class="col-md-12">
+  <nav>
+    <div class="col-md-12 tsk"><h2>Task</h2></div>
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+      <a *ngFor="let department of departments;" (click)="departmentTask(department.id)" [routerLinkActive]="['active']" class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">{{ department.name }}</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade  active in" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <table class="table" cellspacing="0">
+        <thead>
+          <tr>
+           <th class="cnr text-center">Sr. No</th>
+           <th class="cnr"> Name</th>
+           <th class="cnr">Project</th>
+           <th class="cnr">Task</th>
+           <th  class="cnr">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr *ngFor="let task of tasks; let i=index">
+          <td class="name text-center">{{ i+1 }}</td>
+          <td>{{ task.user.fname }} {{ task.user.lname }}</td>
+          <td class="red">{{ task.project.project_name }}</td>
+          <td>{{ task.description }}</td>
+          <td><a [routerLink]="['/', 'single-task', task.id]" class="btn-default btn-outline">
+
+           <span><strong>View</strong></span>            
+         </a>
+       </td>
+     </tr>
+     <tr *ngIf ="tasks == ''">
+      <td class="name text-center">NO RECORD FOUND FOR THIS DEPARTMENT</td>
+     </tr>
+</tbody>
+</table>
+</div>

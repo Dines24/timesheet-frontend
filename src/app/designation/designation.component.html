@@ -1,0 +1,79 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+    <!-- Toggle start -->
+    <nav class="navbar navbar-expand-lg">  
+      <div class="navbar-wrapper">
+        <div class="navbar-toggle">
+          <button type="button" class="navbar-toggler">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+        </div>  
+      </div>
+    </nav>
+ <!--Toggle end -->
+  <!-- The Modal -->
+<div class="modal" id="login-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Designaton</h4>
+        <button type="button" id="close" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="designationForm" (ngSubmit)="onSubmit(designationForm.value)"> 
+          <div class="form-group des">
+            <label Class="lbl">Name Of Designation:</label>
+            <input type="text" name="name" formControlName="name" class="desi" placeholder="Enter Designation">		
+            <div *ngIf="status == 'INVALID'" class="invalid-feedback">
+              <div>Designation name is required</div>
+            </div>
+          </div>
+          <div class=" desi text-center">              
+              <input *ngIf = "formtype == 'add'"  type="submit" class="btn btn-primary"  value="ADD NOW"/>
+              <input *ngIf = "formtype == 'update'"  type="submit" class="btn btn-primary"  value="UPDATE NOW"/>
+          </div>
+        </form>				  
+      </div>
+    </div>                      
+   </div>
+  </div>
+  <!-- pop up end -->
+  <!-- End Navbar -->
+  <div class="content">
+    <a class="navbar-brand dip" href="./dashboard.html">Dashboard <i class="fa fa-chevron-right"></i><span class="dept">Designation</span></a>
+    <button type="button" id="open-designation-model" class="btn btn-primary rttt" data-toggle="modal" data-target="#login-modal">Add Designation</button>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card card-stats">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="bg-primary text-white p-title">
+                <h4 class="mb-0">Designation List</h4>
+              </div>
+              <div class="table-responsive user-data">
+                <table class="table mb-0">
+                  <thead>
+                    <tr>
+                      <th class="namess cnr">Name Of Designation</th>
+                      <th></th>
+                      <th class="cnr desig-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let designation of designations;">
+                      <td class="namess">{{designation.name}}</td>
+                      <td class="task-list"></td>
+                      <td class="text-right action">
+                        <a (click) = "editDesignation(designation.id)"><img src="/assets/Edit.png"></a>
+                        <a (click) = "deleteDesignation(designation.id)"><img src="/assets/delete.png"></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

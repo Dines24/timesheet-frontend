@@ -1,0 +1,273 @@
+<app-sidebar></app-sidebar>
+<!-- side menu end -->
+<div class="main-panel">
+
+
+    <!-- Toggle start -->
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+                <button type="button" class="navbar-toggler">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+
+
+
+        </div>
+    </nav>
+
+
+    <!-- Toggle end -->
+<div class="content">
+    <a class="navbar-brand dip" href="./dashboard.html">Dashboard <i class="fa fa-chevron-right"></i><span class="dept">Project-list</span></a>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats ttt">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mainn">
+                    <div class="crd">
+                        <form id="msform" [formGroup]="projectForm" (ngSubmit)="onSubmit(projectForm.value)">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="account"><strong>Project Info</strong></li>
+                                <li id="personal rrrt"><strong>Time Estimation</strong></li>
+                            </ul>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="first">Project Name</label>
+                                                <input type="text" formControlName="projectname" [ngClass]="{ 'is-invalid': submitted && validate.projectname.errors }" class="form-control" placeholder="Enter Project Name" id="first">
+                                                <div *ngIf="submitted && validate.projectname.status == 'INVALID'" class="invalid-feedback">
+                                                    <div >Project name is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  col-md-6   -->
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="last">Project Owner</label>
+                                                <input type="text" formControlName="projectowner" class="form-control" placeholder="Enter Project Owner" id="last">
+                                            </div>
+                                        </div>  
+                                        <!--  col-md-6   -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="phone">Project From</label>
+                                                <select formControlName="projectfrom" class="form-control">
+                                                    <option class="hidden"  selected disabled>Sale</option>
+                                                    <option>Sale</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--  col-md-6   -->
+
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="phone">Project Type</label>
+                                                <select formControlName="projecttype" class="form-control">
+                                                    <option class="hidden"  selected disabled>Dynamic</option>
+                                                    <option>Static</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--  col-md-6   -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <label for="last">Project For</label>
+                
+                                                    <tag-input formControlName="projectfor" [ngModel]="['hardocoded-item']">
+                                                        <tag-input-dropdown
+                                                        [autocompleteItems]="items"
+                                                        [showDropdownIfEmpty]="true"
+                                                        [dynamicUpdate]="false"
+                                                        >
+                                                        </tag-input-dropdown>
+                                                    </tag-input>
+                                            
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Deadline</label>
+                                                <input formControlName="deadline" type="date" class="form-control"  placeholder="" id="last">
+                                            </div>
+                                        </div>
+                                        <!--  col-md-6   -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone">Priority</label>
+                                                <select formControlName="priority" class="form-control">
+                                                    <option class="hidden"  selected disabled>High</option>
+                                                    <option>Low</option>
+                                                    <option>Medium</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!--  col-md-6   -->
+                                    </div>
+                                    <!-------- row start--------->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="comment">Project Description:</label>
+                                                 <textarea  name="description" formControlName="description"  class="form-control" rows="5" ></textarea> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!------ row end ---->
+
+                                    <!-------- row start--------->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="comment">Upload Document:</label><br>
+                                            <!-- <input type="file"  class="upld-file" name="" placeholder="" id="last"> -->
+                                            <input name="post_image"  #post_image  type="file" (change)="onImgChange($event)"
+                                            id="FilUploader" class="upld-file"/>
+                                        </div>
+                                    </div>
+                                    <!-------- row start--------->
+
+                                </div>
+
+                                <input type="button" name="next" formControlName="next" class="next action-button" value="Next" />
+                            </fieldset>
+
+
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-md-12 take">
+
+                                            <div class="form-group">
+                                                <label for="last">Page Requirement</label>
+                                                <tag-input [ngModel]="['hardocoded-item']" formControlName="page">
+                                                    <tag-input-dropdown
+                                                        [autocompleteItems]="items"
+                                                        [showDropdownIfEmpty]="true"
+                                                        [dynamicUpdate]="false"
+                                                    >
+                                                    </tag-input-dropdown>
+                                                    </tag-input>	  
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 fld">
+                                            <div class="form-group">
+                                                <label for="last">Estimated Time</label>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 checkbox">
+                                                        <div class="col-md-12 fld">
+                                                            <div class="row">
+                                                                <div class="col-md-5 fd">
+                                                                    <label>Designing</label>
+                                                                </div> 
+                                                                <div class="col-md-7 fd">
+                                                                    Est.Time <input  formControlName="designing_est_time" placeholder="10 Hour" type="time" class="cntr">
+
+                                                                </div> 
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-6 checkbox">
+                                                        <div class="col-md-12 fld">
+                                                            <div class="row">
+                                                                <div class="col-md-5 fd">
+                                                                    <label>Development</label>
+                                                                </div> 
+                                                                <div class="col-md-7 fd">
+                                                                    Est.Time <input  formControlName="development_est_time" placeholder="Enter Hour"type="time" class="cntr">
+
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 checkbox">
+                                                        <div class="col-md-12 fld">
+                                                            <div class="row">
+                                                                <div class="col-md-5 fd">
+                                                                    <label>Android</label>
+                                                                </div> 
+                                                                <div class="col-md-7 fd">
+                                                                    Est.Time <input  formControlName="android_est_time" placeholder="10 Hour" type="time" class="cntr">
+
+                                                                </div> 
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-6 checkbox">
+                                                        <div class="col-md-12 fld">
+                                                            <div class="row">
+                                                                <div class="col-md-5 fd">
+                                                                    <label>Ios</label>
+                                                                </div> 
+                                                                <div class="col-md-7 fd">
+                                                                    Est.Time <input  formControlName="ios_est_time"  placeholder="00:00" type="time" class="cntr">
+
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+
+                                    </div>  
+                                </div> 
+                                
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input *ngIf = "formtype == 'add'"  type="submit" class="btn btn-primary"  value="ADD NOW"/>
+                                <input *ngIf = "formtype == 'update'"  type="submit" class="btn btn-primary"  value="UPDATE NOW"/>
+                            </fieldset>
+                        
+
+
+                        </form>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>

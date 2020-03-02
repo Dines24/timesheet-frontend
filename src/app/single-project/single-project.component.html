@@ -1,0 +1,218 @@
+<app-sidebar></app-sidebar>
+<div class="main-panel">
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg">
+		<div class="navbar-wrapper">
+			<div class="navbar-toggle">
+				<button type="button" class="navbar-toggler">
+					<span class="navbar-toggler-bar bar1"></span>
+					<span class="navbar-toggler-bar bar2"></span>
+					<span class="navbar-toggler-bar bar3"></span>
+				</button>
+			</div>
+		</div>
+	</nav>
+	<!-- pop up start -->
+
+<div class="modal" id="login-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Create Task</h4>
+                <button type="button" id="close" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)">
+                    <div class="form-group des">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label Class="lbl">Task Name:</label>
+                                    <input type="text" name="taskname" formControlName="taskname" id="task_named" class="form-control input-sm" placeholder="Enter Task named">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label Class="lbl">Task Description:</label>
+                                    <textarea class="form-control" name="taskdescription" formControlName="taskdescription" rows="5" id="comment" placeholder="Enter Task Discription"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label Class="lbl">Department:</label>
+                                    <select name="department" formControlName="department" class="form-control">
+                                        <option   selected disabled>Designing</option>
+                                        <option *ngFor="let department of departments;" value="{{department.id}}">{{ department.name }}</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>			
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label Class="lbl">Assign To</label>
+                                    <select name="assign" formControlName="assign" class="form-control">
+                                        <!-- <option >Select User</option> -->
+                                        <option  *ngFor="let projectuser of projectusers;" value="{{ projectuser.user.id }}">{{ projectuser.user.fname }} {{ projectuser.user.lname }}</option>
+                                    
+                                    </select>
+                                </div>
+                            </div>
+                        </div>		
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label Class="lbl">Project Start Date:</label>
+                                    <input type="date" name="start_date" formControlName="start_date" id="llast" class="form-control input-sm" placeholder="First named">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label Class="lbl">Time Duration:</label>
+                                    <input type="time" name="time_duration" formControlName="time_duration" id="last" class="form-control input-sm" placeholder="First named">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="desi text-center">
+                        <input *ngIf="formtype == 'add'"  type="submit" class="btn btn-primary"  value="CREATE NOW"/>
+                        <input *ngIf="formtype == 'update'"  type="submit" class="btn btn-primary"value="UPDATE NOW"/>
+                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<!-- pop up end -->
+
+	<!-- End Navbar -->
+<div class="content">
+    <a class="navbar-brand dip" href="">Dashboard</a>
+    <i class="fa fa-chevron-right"></i>
+    <a class="navbar-brand" href="">Project List</a>
+    <i class="fa fa-chevron-right"></i>
+    <a class="navbar-brand" href=""><span class="dept">Project View</span></a>
+    <span class="cmplt"><a  [routerLink]="['/', 'add-project', project.id]" ><button type="button" class="btn btn-default" data-toggle="modal">Edit</button>
+  </a>
+  <button *ngIf="project.status != 'completed'" (click) = "completeProject(project.id)" type="button"  [routerLinkActive]="['active']" class="btn btn-default" >Project Complete</button>
+  <button *ngIf="project.status== 'completed'" type="button"  class="btn btn-default projectcomplete" >Project Completed</button>  
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card card-stats">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-primary text-white p-title">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"><a href="#">Project View<i class="fa fa-check-circle"></i></a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- form start -->		
+                <div class="col-md-12 frm">
+                    <div class="col-md-12 fmm">
+
+                        <div class="col-md-12 ">
+                            <div class="row">
+                                <div class="col-md-5 fmmm">
+                                    <p>Project name : {{ project.project_name  }}</p>
+                                    <p>Project Owner : {{ project.project_owner  }}</p>
+                                    <p>From : {{ project.project_from  }}</p>
+                                </div>
+                                <div class="col-md-5 fm1">
+                                    <p>Estimated Time: {{ essttime }} hours</p>
+                                    <p>Project Start Date: 20 Oct,2020</p>
+                                    <p>Deadline :{{ project.deadline  }}</p>
+                                </div>
+                                <div class="col-md-2 fm1">
+                                    <button type="button" class="btn btn-primary"data-toggle="modal" id="openModel" data-target="#login-modal">Create Task</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="col-md-12 fmm">
+                        <h4>Project Description</h4>
+                        <p>{{ project.project_description }}</p>
+                        <h4>Other</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        <h4>File Attachment</h4>
+                        <i class="fa fa-paperclip">  {{ document }} </i>
+                        <a target="_blank" href="http://172.16.16.60/timesheetbackend/storage/app/{{project.document}}" >View</a>
+                        <a  href="http://172.16.16.60/timesheetbackend/storage/app/{{project.document}}"  download>Download</a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12 team1">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="team2">Working Team</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 fmm">
+                        <div class="row">
+                            <div class="col-md-3" *ngFor="let projectuser of project.projectuser;">
+                                <div class="col-md-12 works">
+                                    <h4 class="team">{{ projectuser.fname }} {{ projectuser.lname }} <br><span class="blr"> Ui& Ux Designer  </span>
+                                        </h4>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main start -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-primary text-white p-title">
+                            <h4 class="mb-0">Task Info</h4>
+                        </div>
+                        <div class="table-responsive user-data">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="cnr">S.No</th>
+                                        <th  class="cnr">Task name</th>
+                                        <th  class="cnr">Task Description</th>
+                                        <th  class="cnr">Department</th>
+                                        <th class="cnr">Name</th>
+                                        <th class="cnr">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="ttt" *ngFor="let task of tasks;  let i =index;">
+                                        <td class="named namess">{{i+1}}</td>
+                                        <td class="named">{{ task.task_name }}</td>
+                                        <td class="named">{{ task.description }}</td>
+                                        <td class="named">{{ task.departments.name }}</td>
+                                        <td class="named">{{ task.user.fname }} {{ task.user.lname }}</td>
+                                        <td class="design-right text-center">
+                                            <a (click) = "editTask(task.id)"><img src="/assets/Edit.png"></a>
+                                            <a [routerLink]="['/', 'single-task', task.id]"><img src="/assets/eye.png"></a>
+                                            <a (click) = "deleteTask(task.id)"><img src="/assets/delete.png"></a>
+                                        </td>
+                                    </tr>                           
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

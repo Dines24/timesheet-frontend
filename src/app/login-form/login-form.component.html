@@ -1,0 +1,46 @@
+<!-- header start -->
+  
+<div class="container-fluid">
+  <div class="row">
+    <div class="Col-xs-12 col-sm-12 header">
+      <div class="col-xs-12 col-sm-12 header-1">
+      
+      <div class="center-div">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Employee Login</h3>
+            </div>
+            <div class="panel-body">
+              <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
+              <fieldset>
+                <div class="form-group">
+                  <label for="username" class="text-info">Username:</label><br>
+                  
+                  <input type="text" [(ngModel)]="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Employee ID" value="">
+                </div>
+                <div class="form-group">
+                     <label for="password" class="text-info">Password:</label><br>
+                     <input type="password" [(ngModel)]="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Enter Password">
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="remember" type="checkbox" value="Remember Me"> Remember Me
+                  </label>
+                </div>
+                <div class="bttn">
+                  
+                  <input (click)="login()" type="submit" name="login-submit" id="login-submit" tabindex="4" class="btn btn-info" value="LOGIN">
+                  </div>
+              </fieldset>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- header end -->
